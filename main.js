@@ -8,26 +8,15 @@ let titleIdx = 0, charIdx = 0, deleting = false;
 const el = document.getElementById('typed-title');
 
 function typeTitle() {
-  const current = titles[titleIdx];
-  if (!deleting) {
-    el.textContent = current.slice(0, ++charIdx);
-    if (charIdx === current.length) {
-      deleting = true;
-      setTimeout(typeTitle, 1800);
-      return;
-    }
-    setTimeout(typeTitle, 70);
-  } else {
-    el.textContent = current.slice(0, --charIdx);
-    if (charIdx === 0) {
-      deleting = false;
-      titleIdx = (titleIdx + 1) % titles.length;
-      setTimeout(typeTitle, 300);
-      return;
-    }
-    setTimeout(typeTitle, 35);
+  const current = "CS Student";
+  
+  el.textContent = current.slice(0, ++charIdx);
+  if (charIdx === current.length) {
+    deleting = true; // although this is no longer needed.
+    return;
   }
 }
+
 typeTitle();
 
 // ── Terminal animation ───────────────────────────────────────
