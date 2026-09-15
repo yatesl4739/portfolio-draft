@@ -8,12 +8,13 @@ let titleIdx = 0, charIdx = 0, deleting = false;
 const el = document.getElementById('typed-title');
 
 function typeTitle() {
-  const current = "CS Student";
-  
-  el.textContent = current.slice(0, ++charIdx);
-  if (charIdx === current.length) {
-    deleting = true; // although this is no longer needed.
-    return;
+  const current = titles[0];
+
+  el.textContent = current.slice(0, charIdx + 1);
+  charIdx++;
+
+  if (charIdx < current.length) {
+    setTimeout(typeTitle, 70);
   }
 }
 
