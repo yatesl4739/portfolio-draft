@@ -26,7 +26,16 @@ function typeTitle() {
 
 typeTitle();
 
-// ── Terminal animation ───────────────────────────────────────
+// Disable spacebar scroll for best experience
+
+document.addEventListener('keydown', e => {
+  if (e.key !== ' ') return;
+  // Still allow spaces in form fields and space-to-click on buttons
+  if (e.target.closest('input, textarea, select, button, [contenteditable]')) return;
+  e.preventDefault();
+});
+
+// Terminal animation 
 const lines = [
   { type: 'cmd',  prompt: '~',    text: 'whoami' },
   { type: 'out',  text: 'Liam Yates — CS student @ <span style="color:var(--yellow)">Purdue</span>' },
