@@ -7,7 +7,7 @@ const titles = [
 const subdomains = [
   'wtfissystemdata',
   'relayout',
-  'caffeine-halflife'
+  'caffeine'
 ];
 
 let titleIdx = 0, charIdx = 0, deleting = false;
