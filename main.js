@@ -4,6 +4,12 @@ const titles = [
   'Machine Learning'
 ];
 
+const subdomains = [
+  'wtfissystemdata',
+  'relayout',
+  'caffeine-halflife'
+];
+
 let titleIdx = 0, charIdx = 0, deleting = false;
 const el = document.getElementById('typed-title');
 
@@ -81,10 +87,29 @@ function startInteractivePrompt() {
       const cmd = inputText.textContent.trim();
       inputLine.querySelector('.t-cursor').remove();
       if (cmd) {
-        const out = document.createElement('span');
-        out.className = 't-line';
-        out.innerHTML = `<span class="t-out">command not found: ${cmd}</span>`;
-        terminal.appendChild(out);
+        if (cmd === 'ls') {
+          const out = document.createElement('span');
+          out.className = 't-line';
+          out.innerHTML = `<span class="t-out">${subdomains.join('  ')}</span>`;
+          terminal.appendChild(out);
+        }
+        else if (cmd.startsWith('cd ')) {
+          const subdomain = cmd.slice(3).trim();
+          if (subdomains.includes(subdomain)) {
+            window.location.href = `https://${subdomain}.liamyates.com`;
+          } else {
+            const out = document.createElement('span');
+            out.className = 't-line';
+            out.innerHTML = `<span class="t-out">cd: no such file or directory: ${subdomain}</span>`;
+            terminal.appendChild(out);
+          }
+        }
+        else{
+          const out = document.createElement('span');
+          out.className = 't-line';
+          out.innerHTML = `<span class="t-out">command not found: ${cmd}</span>`;
+          terminal.appendChild(out);
+        }
       }
       document.removeEventListener('keydown', handleKey);
       startInteractivePrompt();
