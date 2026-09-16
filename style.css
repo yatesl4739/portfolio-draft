@@ -137,6 +137,7 @@ section {
 }
 
 .btn {
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
   display: inline-flex;
   align-items: center;
   gap: .5rem;
