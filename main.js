@@ -104,7 +104,11 @@ function startInteractivePrompt() {
         }
         else if (cmd.startsWith('cd ')) {
           const subdomain = cmd.slice(3).trim();
-          if (subdomains.includes(subdomain)) {
+          if (subdomain.startsWith('-f ')) {
+            // go to that domain anyway
+            window.location.href = `https://${subdomain.slice(3).trim()}.liamyates.com`;
+          }
+          else if (subdomains.includes(subdomain)) {
             window.location.href = `https://${subdomain}.liamyates.com`;
           } else {
             const out = document.createElement('span');
